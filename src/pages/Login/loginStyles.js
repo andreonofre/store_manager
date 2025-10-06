@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Button  from "@mui/material/Button";
+import { Link } from "react-router-dom";
+
 
 export const Container = styled.div`
     display: grid;
@@ -9,17 +11,17 @@ export const Container = styled.div`
 
 export const ContainerLeft = styled.div`
     background-color: #006EC40D;
+    margin: 25px;
+    border-radius: 20px;
     min-height: 80vh;
-    /* min-width: 50vh; */
 `
 
 export const ContainerRight = styled.div`
-    background-color: rgba(255, 252, 242, 1);
+    /* background-color: rgba(255, 252, 242, 1); */
     margin-left: 3rem;
     margin-top: 25vh;
     font-weight: 600;
     font-size: 2rem;
-    /* min-height: 50vh; */
 `
 
 export const Subtitle = styled.h1 `
@@ -27,13 +29,18 @@ export const Subtitle = styled.h1 `
     font-weight: 300;
     color: grey;
 `
+
+
 export const ContainerForm = styled.div `
     display: flex;
     flex-direction: column;
     margin: 20px;
     gap: 20px;
 `
+
+
 export const StyledButton = styled(Button)`
+    width: 100%;
     && {
         background-color: #006EC4;
         text-transform: none;
@@ -42,4 +49,14 @@ export const StyledButton = styled(Button)`
             background-color: #006fc4c0;
         }
     }
+`
+
+
+export const LinkComponent = styled(Link)`
+    display: flex;
+    justify-content: center;
+    font-size: .75rem;
+    margin-top: -10px;
+    color: #006EC4;
+    font-weight: 400;
 `
