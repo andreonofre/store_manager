@@ -8,7 +8,7 @@ import {
 const Home = () => {
     return (
         <Container>
-            
+            <h1>Página home</h1>
         </Container>
     );
 };

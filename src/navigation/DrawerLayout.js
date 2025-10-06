@@ -93,7 +93,7 @@ const DrawerLayout = ({ children }) => {
           ES
         </Avatar>
         <Typography variant="h6" noWrap component="div">
-          Sistema de Estoque
+          Estoque
         </Typography>
         <Typography variant="caption" sx={{ opacity: 0.8 }}>
           Versão 1.0
