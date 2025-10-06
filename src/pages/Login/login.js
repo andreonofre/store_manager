@@ -1,16 +1,21 @@
 import React from "react";
-import { Container, ContainerLeft, ContainerRight, Subtitle, ContainerForm, StyledButton } from "./loginStyles.js";
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import { 
+    Container,
+    ContainerLeft, 
+    ContainerRight, 
+    Subtitle, 
+    ContainerForm, 
+    StyledButton, 
+    LinkComponent 
+} from "./loginStyles.js";
 
 const Login = () => {
     return (
         <Container>
             <ContainerLeft>  </ContainerLeft>
             <ContainerRight> 
-                Welcome 
+                Welcome
                 <Subtitle>Please login here</Subtitle>
                 <ContainerForm>
                     <TextField
@@ -25,12 +30,11 @@ const Login = () => {
                     label="Senha"
                     defaultValue=""
                     />
-                </ContainerForm>
-                <Stack>
-                    <StyledButton variant="contained">Login</StyledButton>
-                </Stack>
-            </ContainerRight>
 
+                    <StyledButton variant="contained">Login</StyledButton>
+                </ContainerForm>
+                <LinkComponent> Esqueceu a Senha? </LinkComponent>
+            </ContainerRight>
         </Container>
     );
 };
