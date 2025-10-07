@@ -17,6 +17,16 @@ import {
   FormControlLabel,
   Avatar,
 } from '@mui/material';
+
+import {
+  DashboardCustomIcon,
+  ProductCustomIcon,
+  MovementCustomIcon,
+  InventoryCustomIcon,
+  SettingsCustomIcon,
+  UserAvatarIcon,
+} from '../CustomIcons';
+
 import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
@@ -27,6 +37,7 @@ import {
   Logout as LogoutIcon,
   Brightness4 as DarkModeIcon,
   Brightness7 as LightModeIcon,
+  BorderColor,
 } from '@mui/icons-material';
 
 const drawerWidth = 280;
@@ -57,41 +68,38 @@ const DrawerLayout = ({ children }) => {
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, path: '/home' },
-    { text: 'Cadastro de Produtos', icon: <AddCircleIcon />, path: '/cadastro-produtos' },
-    { text: 'Movimentações', icon: <TrendingUpIcon />, path: '/movimentacoes' },
-    { text: 'Listar Produtos', icon: <InventoryIcon />, path: '/listar-produtos' },
-    { text: 'Configurações', icon: <SettingsIcon />, path: '/configuracoes' },
+    { text: 'Dashboard', icon: <DashboardCustomIcon />, path: '/home' },
+    { text: 'Cadastro de Produtos', icon: <ProductCustomIcon />, path: '/cadastro-produtos' },
+    { text: 'Movimentações', icon: <MovementCustomIcon />, path: '/movimentacoes' },
+    { text: 'Listar Produtos', icon: <InventoryCustomIcon />, path: '/listar-produtos' },
+    { text: 'Configurações', icon: <SettingsCustomIcon />, path: '/configuracoes' },
   ];
-
   const drawer = (
     <Box
       sx={{
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        bgcolor: isDarkMode ? '#1e1e1e' : '#fff',
+        bgcolor: isDarkMode ? '#1e1e1e' : '#C8DEEF',
       }}
     >
       {/* Header do Drawer */}
       <Box
         sx={{
           p: 3,
-          bgcolor: isDarkMode ? '#2d2d2d' : '#1976d2',
-          color: '#fff',
+          bgcolor: isDarkMode ? '#2d2d2d' : '#C8DEEF',
+          color: '#000000ff',
           textAlign: 'center',
         }}
       >
-        <Avatar
-          sx={{
-            width: 64,
-            height: 64,
-            margin: '0 auto 10px',
-            bgcolor: isDarkMode ? '#424242' : '#1565c0',
-          }}
-        >
-          ES
-        </Avatar>
+        <UserAvatarIcon 
+          sx={{ 
+            fontSize: 60,
+            p: 0.1,
+            mb: 2,
+            color: 'transparent',
+          }} 
+        />
         <Typography variant="h6" noWrap component="div">
           Estoque
         </Typography>
@@ -118,7 +126,7 @@ const DrawerLayout = ({ children }) => {
                   mx: 1,
                   borderRadius: 2,
                   '&.Mui-selected': {
-                    bgcolor: isDarkMode ? '#424242' : '#e3f2fd',
+                    bgcolor: isDarkMode ? '#424242' : '#BED8ED',
                     '&:hover': {
                       bgcolor: isDarkMode ? '#505050' : '#bbdefb',
                     },
@@ -133,10 +141,10 @@ const DrawerLayout = ({ children }) => {
                     color: isActive
                       ? isDarkMode
                         ? '#90caf9'
-                        : '#1976d2'
+                        : '#006EC4'
                       : isDarkMode
-                      ? '#b0b0b0'
-                      : 'inherit',
+                      ? '#006EC4'
+                      : '#28303F',
                     minWidth: 40,
                   }}
                 >
@@ -145,7 +153,13 @@ const DrawerLayout = ({ children }) => {
                 <ListItemText
                   primary={item.text}
                   sx={{
-                    color: isDarkMode ? '#fff' : 'inherit',
+                    color: isActive 
+                      ? isDarkMode
+                        ? '#90caf9'
+                        : '#006EC4'
+                      : isDarkMode
+                      ? '#b0b0b0'
+                      : '#28303F',
                     '& .MuiTypography-root': {
                       fontWeight: isActive ? 600 : 400,
                     },
@@ -265,7 +279,7 @@ const DrawerLayout = ({ children }) => {
               '& .MuiDrawer-paper': {
                 boxSizing: 'border-box',
                 width: drawerWidth,
-                bgcolor: isDarkMode ? '#1e1e1e' : '#fff',
+                bgcolor: isDarkMode ? '#1e1e1e' : '#ffffffff',
               },
             }}
             open
@@ -282,7 +296,7 @@ const DrawerLayout = ({ children }) => {
             p: 3,
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             minHeight: '100vh',
-            bgcolor: isDarkMode ? '#121212' : '#f5f5f5',
+            bgcolor: isDarkMode ? '#121212' : '#fafafa',
             color: isDarkMode ? '#fff' : 'inherit',
           }}
         >
