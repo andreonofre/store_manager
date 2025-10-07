@@ -8,7 +8,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lexend', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #ffffffff;

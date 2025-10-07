@@ -26,6 +26,7 @@ import ListarProdutos from '../pages/ListarProdutos/listarProdutos';
 import Configuracoes from '../pages/Configuracoes/configuracoes';
 import DrawerLayout from '../navigation/DrawerLayout';
 
+
 // Componente para proteger rotas autenticadas
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem('token'); // ou seu método de autenticação
