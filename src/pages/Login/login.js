@@ -1,3 +1,7 @@
+// ============================================
+// ARQUIVO: login.js (ATUALIZADO)
+// ============================================
+
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -43,10 +47,11 @@ const Login = () => {
 
         setLoading(true);
 
-        // Simula uma chamada de API (remova isso quando integrar com backend real)
+        // Simula uma chamada de API
         setTimeout(() => {
-            // Simula autenticação e salva o token
+            // Salva o token e o email do usuário
             localStorage.setItem('token', 'test-token-123');
+            localStorage.setItem('email', email); // SALVA O EMAIL DO USUÁRIO
             
             // Notificação de sucesso
             toast.success('Login realizado com sucesso!', {

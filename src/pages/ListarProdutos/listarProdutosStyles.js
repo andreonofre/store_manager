@@ -1,5 +1,5 @@
 // ============================================
-// ARQUIVO: listarProdutosStyles.js
+// ARQUIVO: listarProdutosStyles.js (ATUALIZADO)
 // ============================================
 
 import styled from 'styled-components';
@@ -52,6 +52,24 @@ export const CardContent = styled.div`
   min-height: 400px;
 `;
 
+export const SearchContainer = styled.div`
+  margin-bottom: 25px;
+  
+  .MuiOutlinedInput-root {
+    background: white;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.Mui-focused {
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    }
+  }
+`;
+
 export const ProductList = styled.div`
   display: flex;
   flex-direction: column;
@@ -88,7 +106,7 @@ export const ProductInfo = styled.div`
 `;
 
 export const ProductName = styled.h4`
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
   color: #333;
   font-size: 1.2rem;
   font-weight: 600;
@@ -98,4 +116,38 @@ export const ProductMeta = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 8px;
 `;
+
+export const StockBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  background: ${props => props.color || '#4caf50'};
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+  margin-right: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  
+  strong {
+    margin: 0 4px;
+  }
+`;
+
+export const LocationBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 8px;
+`;
+
+
+

@@ -1,8 +1,8 @@
 // ============================================
-// ARQUIVO: cadastroProdutos.js
+// ARQUIVO: cadastroProdutos.js (ATUALIZADO)
 // ============================================
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   TextField, 
   MenuItem, 
@@ -18,7 +18,10 @@ import {
   CategoryOutlined,
   AttachMoneyOutlined,
   InventoryOutlined,
-  ImageOutlined
+  ImageOutlined,
+  LocationOnOutlined,
+  PersonOutlined,
+  WarningOutlined
 } from '@mui/icons-material';
 import {
   PageContainer,
@@ -35,19 +38,34 @@ import {
 
 export default function CadastroProdutos() {
   const [formData, setFormData] = useState({
+    codigo: '',
     nome: '',
     descricao: '',
     categoria: '',
     preco: '',
     quantidade: '',
-    imagem: ''
+    estoqueMinimo: '',
+    imagem: '',
+    corredor: '',
+    prateleira: ''
   });
+
+  const [usuarioLogado, setUsuarioLogado] = useState('');
 
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
     severity: 'success'
   });
+
+  useEffect(() => {
+    const email = localStorage.getItem('email');
+    if (email) {
+      setUsuarioLogado(email);
+    } else {
+      setUsuarioLogado('Usuário não identificado');
+    }
+  }, []);
 
   const categorias = [
     'Eletrônicos',
@@ -83,6 +101,11 @@ export default function CadastroProdutos() {
 
   const handleSubmit = () => {
     // Validações
+    if (!formData.codigo.trim()) {
+      showSnackbar('Código do produto é obrigatório!', 'error');
+      return;
+    }
+
     if (!formData.nome.trim()) {
       showSnackbar('Nome do produto é obrigatório!', 'error');
       return;
@@ -103,19 +126,45 @@ export default function CadastroProdutos() {
       return;
     }
 
+    if (!formData.estoqueMinimo || parseInt(formData.estoqueMinimo) < 0) {
+      showSnackbar('Estoque mínimo inválido!', 'error');
+      return;
+    }
+
+    if (!formData.corredor.trim()) {
+      showSnackbar('Corredor é obrigatório!', 'error');
+      return;
+    }
+
+    if (!formData.prateleira.trim()) {
+      showSnackbar('Prateleira é obrigatória!', 'error');
+      return;
+    }
+
+    // Verificar se já existe produto com este código
+    const produtosExistentes = JSON.parse(
+      localStorage.getItem('produtos') || '[]'
+    );
+
+    const codigoExiste = produtosExistentes.some(
+      p => p.codigo.toLowerCase() === formData.codigo.toLowerCase()
+    );
+
+    if (codigoExiste) {
+      showSnackbar('Já existe um produto com este código!', 'error');
+      return;
+    }
+
     // Criar novo produto
     const novoProduto = {
       id: Date.now(),
       ...formData,
       preco: parseFloat(formData.preco),
       quantidade: parseInt(formData.quantidade),
+      estoqueMinimo: parseInt(formData.estoqueMinimo),
+      cadastradoPor: usuarioLogado,
       dataCadastro: new Date().toISOString()
     };
-
-    // Recuperar produtos existentes do localStorage
-    const produtosExistentes = JSON.parse(
-      localStorage.getItem('produtos') || '[]'
-    );
 
     // Adicionar novo produto
     const produtosAtualizados = [...produtosExistentes, novoProduto];
@@ -129,12 +178,16 @@ export default function CadastroProdutos() {
 
   const handleClear = () => {
     setFormData({
+      codigo: '',
       nome: '',
       descricao: '',
       categoria: '',
       preco: '',
       quantidade: '',
-      imagem: ''
+      estoqueMinimo: '',
+      imagem: '',
+      corredor: '',
+      prateleira: ''
     });
   };
 
@@ -149,6 +202,15 @@ export default function CadastroProdutos() {
           </CardHeader>
           
           <CardContent>
+            {/* Usuário Logado */}
+            <Alert 
+              severity="info" 
+              icon={<PersonOutlined />}
+              sx={{ mb: 3, borderRadius: '12px' }}
+            >
+              Cadastrando como: <strong>{usuarioLogado}</strong>
+            </Alert>
+
             {/* Informações Básicas */}
             <FormSection>
               <SectionTitle>
@@ -156,6 +218,18 @@ export default function CadastroProdutos() {
                 Informações Básicas
               </SectionTitle>
               
+              <Box sx={{ mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Código do Produto"
+                  variant="outlined"
+                  required
+                  value={formData.codigo}
+                  onChange={(e) => handleChange('codigo', e.target.value)}
+                  placeholder="Ex: PROD001, ELT-001"
+                />
+              </Box>
+
               <Box sx={{ mb: 3 }}>
                 <TextField
                   fullWidth
@@ -240,6 +314,56 @@ export default function CadastroProdutos() {
                   }}
                 />
               </Box>
+
+              <Box sx={{ mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Estoque Mínimo"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.estoqueMinimo}
+                  onChange={(e) => handleChange('estoqueMinimo', e.target.value)}
+                  placeholder="Ex: 10"
+                  inputProps={{
+                    min: '0'
+                  }}
+                  helperText="Defina a quantidade mínima de estoque para alertas"
+                  InputProps={{
+                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />
+                  }}
+                />
+              </Box>
+            </FormSection>
+
+            {/* Localização no Estoque */}
+            <FormSection>
+              <SectionTitle>
+                <LocationOnOutlined sx={{ mr: 1 }} />
+                Localização no Estoque
+              </SectionTitle>
+              
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Corredor"
+                  variant="outlined"
+                  required
+                  value={formData.corredor}
+                  onChange={(e) => handleChange('corredor', e.target.value)}
+                  placeholder="Ex: A1, B3, C2"
+                />
+
+                <TextField
+                  fullWidth
+                  label="Prateleira"
+                  variant="outlined"
+                  required
+                  value={formData.prateleira}
+                  onChange={(e) => handleChange('prateleira', e.target.value)}
+                  placeholder="Ex: P1, P2, Superior"
+                />
+              </Box>
             </FormSection>
 
             {/* Imagem */}
@@ -319,7 +443,6 @@ export default function CadastroProdutos() {
         </Card>
       </FormContainer>
 
-      {/* Snackbar para notificações */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={3000}

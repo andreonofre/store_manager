@@ -293,7 +293,7 @@ const DrawerLayout = ({ children }) => {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
+            p: 0,
             width: { sm: `calc(100% - ${drawerWidth}px)` },
             minHeight: '100vh',
             bgcolor: isDarkMode ? '#121212' : '#fafafa',
