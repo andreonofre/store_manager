@@ -1,5 +1,5 @@
 // ============================================
-// ARQUIVO: cadastroProdutos.js (ATUALIZADO)
+//   ARQUIVO: cadastroProdutos.js (ATUALIZADO)
 // ============================================
 
 import React, { useState, useEffect } from 'react';
@@ -101,10 +101,10 @@ export default function CadastroProdutos() {
 
   const handleSubmit = () => {
     // Validações
-    if (!formData.codigo.trim()) {
-      showSnackbar('Código do produto é obrigatório!', 'error');
-      return;
-    }
+    // if (!formData.codigo.trim()) {
+    //   showSnackbar('Código do produto é obrigatório!', 'error');
+    //   return;
+    // }
 
     if (!formData.nome.trim()) {
       showSnackbar('Nome do produto é obrigatório!', 'error');
@@ -150,10 +150,10 @@ export default function CadastroProdutos() {
       p => p.codigo.toLowerCase() === formData.codigo.toLowerCase()
     );
 
-    if (codigoExiste) {
-      showSnackbar('Já existe um produto com este código!', 'error');
-      return;
-    }
+    // if (codigoExiste) {
+    //   showSnackbar('Já existe um produto com este código!', 'error');
+    //   return;
+    // }
 
     // Criar novo produto
     const novoProduto = {
@@ -218,7 +218,7 @@ export default function CadastroProdutos() {
                 Informações Básicas
               </SectionTitle>
               
-              <Box sx={{ mb: 3 }}>
+              {/* <Box sx={{ mb: 3 }}>
                 <TextField
                   fullWidth
                   label="Código do Produto"
@@ -228,7 +228,7 @@ export default function CadastroProdutos() {
                   onChange={(e) => handleChange('codigo', e.target.value)}
                   placeholder="Ex: PROD001, ELT-001"
                 />
-              </Box>
+              </Box> */}
 
               <Box sx={{ mb: 3 }}>
                 <TextField
@@ -276,6 +276,119 @@ export default function CadastroProdutos() {
                 />
               </Box>
             </FormSection>
+
+
+             {/* Custos e Estoque*/}
+            <FormSection>
+              <SectionTitle>
+                <AttachMoneyOutlined sx={{ mr: 1 }} />
+                Custos do Produto
+              </SectionTitle>
+              
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Custo Unitário (R$)"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.preco}
+                  onChange={(e) => handleChange('preco', e.target.value)}
+                  placeholder="0.00"
+                  inputProps={{
+                    step: '0.01',
+                    min: '0'
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Logística (R$)"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.preco}
+                  onChange={(e) => handleChange('preco', e.target.value)}
+                  placeholder="0.00"
+                  inputProps={{
+                    step: '0.01',
+                    min: '0'
+                  }}
+                />
+              </Box>
+
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Mão de Obra (R$)"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.preco}
+                  onChange={(e) => handleChange('preco', e.target.value)}
+                  placeholder="0.00"
+                  inputProps={{
+                    step: '0.01',
+                    min: '0'
+                  }}
+                />
+
+                 <TextField
+                  fullWidth
+                  label="Embalagens (R$)"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.preco}
+                  onChange={(e) => handleChange('preco', e.target.value)}
+                  placeholder="0.00"
+                  inputProps={{
+                    step: '0.01',
+                    min: '0'
+                  }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Armazém (R$)"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.preco}
+                  onChange={(e) => handleChange('preco', e.target.value)}
+                  placeholder="0.00"
+                  inputProps={{
+                    step: '0.01',
+                    min: '0'
+                  }}
+                />
+
+              </Box>
+
+{/* 
+              <Box sx={{ mb: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Estoque Mínimo"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.estoqueMinimo}
+                  onChange={(e) => handleChange('estoqueMinimo', e.target.value)}
+                  placeholder="Ex: 10"
+                  inputProps={{
+                    min: '0'
+                  }}
+                  helperText="Defina a quantidade mínima de estoque para alertas"
+                  InputProps={{
+                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />
+                  }}
+                />
+              </Box> */}
+            </FormSection>
+
+
+
 
             {/* Valores e Estoque */}
             <FormSection>
