@@ -104,10 +104,11 @@ export default function ListarProdutos() {
 
   const termo = searchTerm.toLowerCase();
   const filtrados = produtos.filter(produto => {
-    const codigo = produto.codigo ? produto.codigo.toLowerCase() : '';
+  //  const codigo = produto.codigo ? produto.codigo.toLowerCase() : '';
     const nome = produto.nome ? produto.nome.toLowerCase() : '';
     
-    return codigo.includes(termo) || nome.includes(termo);
+    return nome.includes(termo);
+    //return codigo.includes(termo) || nome.includes(termo);
   });
   setProdutosFiltrados(filtrados);
 };
@@ -188,7 +189,7 @@ export default function ListarProdutos() {
       return;
     }
 
-    if (!editData.preco || parseFloat(editData.preco) <= 0) {
+    if (!editData.custoUnitario || parseFloat(editData.custoUnitario) <= 0) {
       showSnackbar('Preço deve ser maior que zero!', 'error');
       return;
     }
@@ -218,7 +219,7 @@ export default function ListarProdutos() {
       p.id === editData.id 
         ? {
             ...editData,
-            preco: parseFloat(editData.preco),
+            custoUnitario: parseFloat(editData.custoUnitario),
             quantidade: parseInt(editData.quantidade),
             estoqueMinimo: parseInt(editData.estoqueMinimo)
           }
@@ -320,7 +321,9 @@ export default function ListarProdutos() {
                             fontWeight: 600 
                           }}
                         >
-                          Código: {produto.codigo}
+     
+                          Código: 123
+                           {/* {produto.codigo} */}
                         </Typography>
                         
                         <ProductMeta>
@@ -523,7 +526,8 @@ export default function ListarProdutos() {
                       Código
                     </Typography>
                     <Typography variant="h6" sx={{ fontWeight: 600, color: '#333' }}>
-                      {editData.codigo}
+                      {/* {editData.codigo} */}
+                      123
                     </Typography>
                   </Box>
                 </Box>
