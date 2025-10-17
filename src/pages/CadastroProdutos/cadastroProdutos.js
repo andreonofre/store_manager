@@ -42,7 +42,11 @@ export default function CadastroProdutos() {
     nome: '',
     descricao: '',
     categoria: '',
-    preco: '',
+    custoUnitario: '',
+    custoLogistica: '',
+    custoMaoDeObra: '',
+    custoEmbalagem: '',
+    custoArmazem: '',
     quantidade: '',
     estoqueMinimo: '',
     imagem: '',
@@ -116,7 +120,27 @@ export default function CadastroProdutos() {
       return;
     }
 
-    if (!formData.preco || parseFloat(formData.preco) <= 0) {
+    if (!formData.custoUnitario || parseFloat(formData.custoUnitario) <= 0) {
+      showSnackbar('Preço deve ser maior que zero!', 'error');
+      return;
+    }
+
+    if (!formData.custoLogistica || parseFloat(formData.custoLogistica) <= 0) {
+      showSnackbar('Preço deve ser maior que zero!', 'error');
+      return;
+    }
+
+    if (!formData.custoMaoDeObra || parseFloat(formData.custoMaoDeObra) <= 0) {
+      showSnackbar('Preço deve ser maior que zero!', 'error');
+      return;
+    }
+
+      if (!formData.custoEmbalagem || parseFloat(formData.custoEmbalagem) <= 0) {
+      showSnackbar('Preço deve ser maior que zero!', 'error');
+      return;
+    }
+
+    if (!formData.custoArmazem || parseFloat(formData.custoArmazem) <= 0) {
       showSnackbar('Preço deve ser maior que zero!', 'error');
       return;
     }
@@ -159,7 +183,11 @@ export default function CadastroProdutos() {
     const novoProduto = {
       id: Date.now(),
       ...formData,
-      preco: parseFloat(formData.preco),
+      custoUnitario: parseFloat(formData.custoUnitario),
+      custoLogistica: parseFloat(formData.custoLogistica),
+      custoMaoDeObra: parseFloat(formData.custoMaoDeObra),
+      custoEmbalagem: parseFloat(formData.custoEmbalagem),
+      custoArmazem: parseFloat(formData.custoArmazem),
       quantidade: parseInt(formData.quantidade),
       estoqueMinimo: parseInt(formData.estoqueMinimo),
       cadastradoPor: usuarioLogado,
@@ -182,7 +210,11 @@ export default function CadastroProdutos() {
       nome: '',
       descricao: '',
       categoria: '',
-      preco: '',
+      custoUnitario: '',
+      custoLogistica: '',
+      custoMaoDeObra: '',
+      custoEmbalagem: '',
+      custoArmazem: '',
       quantidade: '',
       estoqueMinimo: '',
       imagem: '',
@@ -280,8 +312,8 @@ export default function CadastroProdutos() {
                   variant="outlined"
                   required
                   type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
+                  value={formData.custoUnitario}
+                  onChange={(e) => handleChange('custoUnitario', e.target.value)}
                   placeholder="0.00"
                   inputProps={{
                     step: '0.01',
@@ -295,8 +327,8 @@ export default function CadastroProdutos() {
                   variant="outlined"
                   required
                   type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
+                  value={formData.custoLogistica}
+                  onChange={(e) => handleChange('custoLogistica', e.target.value)}
                   placeholder="0.00"
                   inputProps={{
                     step: '0.01',
@@ -312,8 +344,8 @@ export default function CadastroProdutos() {
                   variant="outlined"
                   required
                   type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
+                  value={formData.custoMaoDeObra}
+                  onChange={(e) => handleChange('custoMaoDeObra', e.target.value)}
                   placeholder="0.00"
                   inputProps={{
                     step: '0.01',
@@ -327,8 +359,8 @@ export default function CadastroProdutos() {
                   variant="outlined"
                   required
                   type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
+                  value={formData.custoEmbalagem}
+                  onChange={(e) => handleChange('custoEmbalagem', e.target.value)}
                   placeholder="0.00"
                   inputProps={{
                     step: '0.01',
@@ -342,8 +374,8 @@ export default function CadastroProdutos() {
                   variant="outlined"
                   required
                   type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
+                  value={formData.custoArmazem}
+                  onChange={(e) => handleChange('custoArmazem', e.target.value)}
                   placeholder="0.00"
                   inputProps={{
                     step: '0.01',
@@ -354,8 +386,6 @@ export default function CadastroProdutos() {
               </Box>
 
             </FormSection>
-
-
 
 
             {/* Valores e Estoque */}

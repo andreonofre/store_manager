@@ -1,16 +1,33 @@
 import React from "react";
 import TextField from '@mui/material/TextField';
-import { 
-    Container,
-
+import listarProdutos from '../ListarProdutos/listarProdutos.js'
+import {
+  Container,
+  SearchContainer,
+  WelcomeText,
+  SearchBox,
 } from "./homeStyles.js";
 
 const Home = () => {
-    return (
-        <Container>
-            <h1>Página home</h1>
-        </Container>
-    );
+  return (
+    <>
+      <SearchContainer>
+        <WelcomeText>Bem-vindo, User! 👋</WelcomeText>
+        <SearchBox>
+          <TextField
+            variant="outlined"
+            placeholder="Pesquisar"
+            size="small"
+          />
+        </SearchBox>
+      </SearchContainer>
+      <Container>
+        <div>
+          {/* Resto do conteúdo do dashboard */}
+        </div>
+      </Container>
+    </>
+  );
 };
 
 export default Home;
