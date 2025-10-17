@@ -217,18 +217,6 @@ export default function CadastroProdutos() {
                 <CategoryOutlined sx={{ mr: 1 }} />
                 Informações Básicas
               </SectionTitle>
-              
-              {/* <Box sx={{ mb: 3 }}>
-                <TextField
-                  fullWidth
-                  label="Código do Produto"
-                  variant="outlined"
-                  required
-                  value={formData.codigo}
-                  onChange={(e) => handleChange('codigo', e.target.value)}
-                  placeholder="Ex: PROD001, ELT-001"
-                />
-              </Box> */}
 
               <Box sx={{ mb: 3 }}>
                 <TextField
@@ -365,26 +353,6 @@ export default function CadastroProdutos() {
 
               </Box>
 
-{/* 
-              <Box sx={{ mb: 3 }}>
-                <TextField
-                  fullWidth
-                  label="Estoque Mínimo"
-                  variant="outlined"
-                  required
-                  type="number"
-                  value={formData.estoqueMinimo}
-                  onChange={(e) => handleChange('estoqueMinimo', e.target.value)}
-                  placeholder="Ex: 10"
-                  inputProps={{
-                    min: '0'
-                  }}
-                  helperText="Defina a quantidade mínima de estoque para alertas"
-                  InputProps={{
-                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />
-                  }}
-                />
-              </Box> */}
             </FormSection>
 
 
@@ -394,25 +362,11 @@ export default function CadastroProdutos() {
             <FormSection>
               <SectionTitle>
                 <AttachMoneyOutlined sx={{ mr: 1 }} />
-                Valores e Estoque
+                Estoque
               </SectionTitle>
-              
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, mb: 3 }}>
-                <TextField
-                  fullWidth
-                  label="Preço (R$)"
-                  variant="outlined"
-                  required
-                  type="number"
-                  value={formData.preco}
-                  onChange={(e) => handleChange('preco', e.target.value)}
-                  placeholder="0.00"
-                  inputProps={{
-                    step: '0.01',
-                    min: '0'
-                  }}
-                />
 
+
+             <Box sx={{ mb: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
                 <TextField
                   fullWidth
                   label="Quantidade em Estoque"
@@ -422,13 +376,9 @@ export default function CadastroProdutos() {
                   value={formData.quantidade}
                   onChange={(e) => handleChange('quantidade', e.target.value)}
                   placeholder="0"
-                  inputProps={{
-                    min: '0'
-                  }}
+                  inputProps={{ min: '0' }}
                 />
-              </Box>
 
-              <Box sx={{ mb: 3 }}>
                 <TextField
                   fullWidth
                   label="Estoque Mínimo"
@@ -438,15 +388,15 @@ export default function CadastroProdutos() {
                   value={formData.estoqueMinimo}
                   onChange={(e) => handleChange('estoqueMinimo', e.target.value)}
                   placeholder="Ex: 10"
-                  inputProps={{
-                    min: '0'
-                  }}
+                  inputProps={{ min: '0' }}
                   helperText="Defina a quantidade mínima de estoque para alertas"
                   InputProps={{
-                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />
+                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />,
                   }}
                 />
               </Box>
+
+
             </FormSection>
 
             {/* Localização no Estoque */}
