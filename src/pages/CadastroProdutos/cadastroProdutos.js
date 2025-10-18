@@ -1075,7 +1075,7 @@ const calcularValorVenda = () => {
                   fullWidth
                   label="Logística (R$)"
                   variant="outlined"
-                  required
+                  // required
                   type="number"
                   value={formData.custoLogistica}
                   onChange={(e) => handleChange('custoLogistica', e.target.value)}
@@ -1093,7 +1093,7 @@ const calcularValorVenda = () => {
                   fullWidth
                   label="Mão de Obra (R$)"
                   variant="outlined"
-                  required
+                  // required
                   type="number"
                   value={formData.custoMaoDeObra}
                   onChange={(e) => handleChange('custoMaoDeObra', e.target.value)}
@@ -1109,7 +1109,7 @@ const calcularValorVenda = () => {
                   fullWidth
                   label="Embalagens (R$)"
                   variant="outlined"
-                  required
+                  // required
                   type="number"
                   value={formData.custoEmbalagem}
                   onChange={(e) => handleChange('custoEmbalagem', e.target.value)}
@@ -1125,7 +1125,7 @@ const calcularValorVenda = () => {
                   fullWidth
                   label="Armazém (R$)"
                   variant="outlined"
-                  required
+                  // required
                   type="number"
                   value={formData.custoArmazem}
                   onChange={(e) => handleChange('custoArmazem', e.target.value)}
@@ -1158,7 +1158,7 @@ const calcularValorVenda = () => {
                   fullWidth
                   label="Quantidade em Estoque"
                   variant="outlined"
-                  required
+                  // required
                   type="number"
                   value={formData.quantidade}
                   onChange={(e) => handleChange('quantidade', e.target.value)}
