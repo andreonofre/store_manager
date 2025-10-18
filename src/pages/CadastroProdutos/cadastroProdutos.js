@@ -9,7 +9,8 @@ import {
   Button,
   Box,
   Alert,
-  Snackbar
+  Snackbar,
+  Typography
 } from '@mui/material';
 import {
   SaveOutlined,
@@ -37,6 +38,7 @@ import {
 } from './cadastroProdutosStyles';
 
 export default function CadastroProdutos() {
+
   const [formData, setFormData] = useState({
     codigo: '',
     nome: '',
@@ -54,6 +56,8 @@ export default function CadastroProdutos() {
     prateleira: ''
   });
 
+
+  const [percentualLucro, setPercentualLucro] = useState('');
   const [usuarioLogado, setUsuarioLogado] = useState('');
 
   const [snackbar, setSnackbar] = useState({
@@ -103,13 +107,39 @@ export default function CadastroProdutos() {
     setSnackbar(prev => ({ ...prev, open: false }));
   };
 
+
+// Adicione esta função para calcular o custo total
+const calcularCustoTotal = () => {
+  const custos = [
+    parseFloat(formData.custoUnitario) || 0,
+    parseFloat(formData.custoLogistica) || 0,
+    parseFloat(formData.custoMaoDeObra) || 0,
+    parseFloat(formData.custoEmbalagem) || 0,
+    parseFloat(formData.custoArmazem) || 0
+  ];
+  
+  return custos.reduce((acc, valor) => acc + valor, 0);
+};
+
+
+
+// Adicione esta função para calcular o valor de venda
+const calcularValorVenda = () => {
+  const custoTotal = calcularCustoTotal();
+  const percentual = parseFloat(percentualLucro) || 0;
+  return custoTotal + (custoTotal * (percentual / 100));
+};
+
   const handleSubmit = () => {
+
+
     // Validações
     // if (!formData.codigo.trim()) {
     //   showSnackbar('Código do produto é obrigatório!', 'error');
     //   return;
     // }
 
+   
     if (!formData.nome.trim()) {
       showSnackbar('Nome do produto é obrigatório!', 'error');
       return;
@@ -221,6 +251,7 @@ export default function CadastroProdutos() {
       corredor: '',
       prateleira: ''
     });
+    setPercentualLucro(''); // Adicione esta linha
   };
 
   return (
@@ -388,8 +419,8 @@ export default function CadastroProdutos() {
             </FormSection>
 
 
-            {/* Valores e Estoque */}
-            <FormSection>
+            {/* Sessão Estoque */}
+            {/* <FormSection>
               <SectionTitle>
                 <AttachMoneyOutlined sx={{ mr: 1 }} />
                 Estoque
@@ -427,7 +458,142 @@ export default function CadastroProdutos() {
               </Box>
 
 
+            </FormSection> */}
+
+
+
+            {/* Sessão Estoque */}
+            <FormSection>
+              <SectionTitle>
+                <InventoryOutlined sx={{ mr: 1 }} />
+                Estoque
+              </SectionTitle>
+
+
+               {/* Campos de Estoque Existentes */}
+              <Box sx={{ mb: 3, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                <TextField
+                  fullWidth
+                  label="Quantidade em Estoque"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.quantidade}
+                  onChange={(e) => handleChange('quantidade', e.target.value)}
+                  placeholder="0"
+                  inputProps={{ min: '0' }}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Estoque Mínimo"
+                  variant="outlined"
+                  required
+                  type="number"
+                  value={formData.estoqueMinimo}
+                  onChange={(e) => handleChange('estoqueMinimo', e.target.value)}
+                  placeholder="Ex: 10"
+                  inputProps={{ min: '0' }}
+                  helperText="Defina a quantidade mínima de estoque para alertas"
+                  InputProps={{
+                    startAdornment: <WarningOutlined sx={{ mr: 1, color: '#ff9800' }} />,
+                  }}
+                />
+
+                <TextField
+                    fullWidth
+                    label="Percentual de Lucro (%)"
+                    variant="outlined"
+                    type="number"
+                    value={percentualLucro}
+                    onChange={(e) => setPercentualLucro(e.target.value)}
+                    placeholder="Ex: 50, 100, 150"
+                    inputProps={{
+                      step: '0.01',
+                      min: '0'
+                    }}
+                    helperText="Digite o percentual de lucro desejado"
+                  />
+              </Box>
+
+              {/* Grid com Cards de Cálculo */}
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, mb: 3 }}>
+                {/* Card Custo Total */}
+                <Card 
+                  sx={{ 
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    color: 'white',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)'
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                      <AttachMoneyOutlined sx={{ mr: 1, fontSize: 24 }} />
+                      <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                        Custo Total do Produto
+                      </Typography>
+                    </Box>
+                    <Typography variant="h4" sx={{ fontWeight: 700, mt: 1 }}>
+                      R$ {calcularCustoTotal().toFixed(2)}
+                    </Typography>
+                    <Typography variant="caption" sx={{ opacity: 0.9, mt: 1, display: 'block' }}>
+                      Soma de todos os custos
+                    </Typography>
+                  </CardContent>
+
+                </Card>
+
+                  <Card 
+                  sx={{ 
+                    background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+                    color: 'white',
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 15px rgba(17, 153, 142, 0.4)'
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Box>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <AttachMoneyOutlined sx={{ mr: 1, fontSize: 24 }} />
+                          <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                            Valor de Venda Sugerido
+                          </Typography>
+                        </Box>
+                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
+                          R$ {calcularValorVenda().toFixed(2)}
+                        </Typography>
+                        <Typography variant="caption" sx={{ opacity: 0.9, mt: 1, display: 'block' }}>
+                          {percentualLucro 
+                            ? `Custo + ${percentualLucro}% de lucro` 
+                            : 'Informe o percentual de lucro'}
+                        </Typography>
+                      </Box>
+                      
+                      {percentualLucro && calcularCustoTotal() > 0 && (
+                        <Box sx={{ textAlign: 'center', bgcolor: 'rgba(255, 255, 255, 0.2)', p: 2, borderRadius: '8px' }}>
+                          <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
+                            Lucro Unitário
+                          </Typography>
+                          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                            R$ {(calcularValorVenda() - calcularCustoTotal()).toFixed(2)}
+                          </Typography>
+                        </Box>
+                      )}
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+
+              {/* Card Valor de Venda */}
+              <Box sx={{ mb: 3 }}>
+                
+              </Box>
+
+             
             </FormSection>
+
 
             {/* Localização no Estoque */}
             <FormSection>
