@@ -25,6 +25,7 @@ import {
   InventoryCustomIcon,
   SettingsCustomIcon,
   UserAvatarIcon,
+  ClientesCustomIcon,
 } from '../CustomIcons';
 
 import {
@@ -73,6 +74,7 @@ const DrawerLayout = ({ children }) => {
     { text: 'Movimentações', icon: <MovementCustomIcon />, path: '/movimentacoes' },
     { text: 'Listar Produtos', icon: <InventoryCustomIcon />, path: '/listar-produtos' },
     { text: 'Configurações', icon: <SettingsCustomIcon />, path: '/configuracoes' },
+    { text: 'Clientes', icon: <SettingsCustomIcon />, path: '/clientes' },
   ];
   const drawer = (
     <Box

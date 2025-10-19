@@ -8,6 +8,7 @@ import CadastroProdutos from '../pages/CadastroProdutos/cadastroProdutos';
 import Movimentacoes from '../pages/Movimentacoes/movimentacoes';
 import ListarProdutos from '../pages/ListarProdutos/listarProdutos';
 import Configuracoes from '../pages/Configuracoes/configuracoes';
+import Clientes from '../pages/Clientes/clientes'
 import DrawerLayout from '../navigation/DrawerLayout';
 
 
@@ -66,6 +67,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Configuracoes />
+          </ProtectedRoute>
+        }
+      />
+         <Route
+        path="/clientes"
+        element={
+          <ProtectedRoute>
+            <Clientes />
           </ProtectedRoute>
         }
       />
