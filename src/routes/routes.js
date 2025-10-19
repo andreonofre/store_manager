@@ -9,6 +9,7 @@ import Movimentacoes from '../pages/Movimentacoes/movimentacoes';
 import ListarProdutos from '../pages/ListarProdutos/listarProdutos';
 import Configuracoes from '../pages/Configuracoes/configuracoes';
 import Clientes from '../pages/Clientes/clientes'
+import Fornecedores from '../pages/Fornecedores/fornecedores'
 import DrawerLayout from '../navigation/DrawerLayout';
 
 
@@ -75,6 +76,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Clientes />
+          </ProtectedRoute>
+        }
+      />
+         <Route
+        path="/fornecedores"
+        element={
+          <ProtectedRoute>
+            <Fornecedores />
           </ProtectedRoute>
         }
       />

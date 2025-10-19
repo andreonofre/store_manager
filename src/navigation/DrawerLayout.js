@@ -75,6 +75,7 @@ const DrawerLayout = ({ children }) => {
     { text: 'Listar Produtos', icon: <InventoryCustomIcon />, path: '/listar-produtos' },
     { text: 'Configurações', icon: <SettingsCustomIcon />, path: '/configuracoes' },
     { text: 'Clientes', icon: <SettingsCustomIcon />, path: '/clientes' },
+    { text: 'Fornecedores', icon: <SettingsCustomIcon />, path: '/fornecedores' },
   ];
   const drawer = (
     <Box
