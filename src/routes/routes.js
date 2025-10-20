@@ -11,6 +11,7 @@ import Configuracoes from '../pages/Configuracoes/configuracoes';
 import Clientes from '../pages/Clientes/clientes'
 import Fornecedores from '../pages/Fornecedores/fornecedores'
 import DrawerLayout from '../navigation/DrawerLayout';
+import EsqueceuSenha from '../pages/EsqueceuSenha/esqueceuSenha';
 
 
 // Componente para proteger rotas autenticadas
@@ -84,6 +85,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Fornecedores />
+          </ProtectedRoute>
+        }
+      />
+        <Route
+        path="/esqueceu-senha"
+        element={
+          <ProtectedRoute>
+            <EsqueceuSenha />
           </ProtectedRoute>
         }
       />
