@@ -30,6 +30,7 @@ const AppRoutes = () => {
     <Routes>
       {/* Rota pública - Login */}
       <Route path="/" element={<Login />} />
+      <Route path="/esqueceuSenha" element={<EsqueceuSenha />} />
       
       {/* Rotas protegidas com Drawer */}
       <Route
@@ -85,14 +86,6 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <Fornecedores />
-          </ProtectedRoute>
-        }
-      />
-        <Route
-        path="/esqueceu-senha"
-        element={
-          <ProtectedRoute>
-            <EsqueceuSenha />
           </ProtectedRoute>
         }
       />

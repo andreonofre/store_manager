@@ -107,7 +107,7 @@ const EsqueceuSenha = () => {
           >
             {loading ? 'Enviando...' : 'Enviar Código'}
           </StyledButton>
-          <LinkComponent to="/login">
+          <LinkComponent onClick={() => window.location.href = '/'} style={{ cursor: 'pointer' }}>
             Voltar para Login
           </LinkComponent>
         </ContainerForm>

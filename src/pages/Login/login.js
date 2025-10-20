@@ -3,9 +3,10 @@
 // ============================================
 
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { toast } from 'react-toastify';
+
 import { 
     Container,
     ContainerLeft, 
@@ -79,11 +80,9 @@ const Login = () => {
     };
 
     const handleForgotPassword = () => {
-        toast.info('Funcionalidade de recuperação de senha em desenvolvimento!', {
-            position: "top-center",
-            autoClose: 3000,
-        });
+        window.location.href = '/esqueceuSenha';
     };
+
 
     return (
         <Container>
