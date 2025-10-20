@@ -15,7 +15,7 @@ import {
     ContainerForm, 
     StyledButton, 
     LinkComponent 
-} from "./loginStyles.js";
+} from "./cadastroUsuarioStyles.js";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -83,8 +83,8 @@ const Login = () => {
         window.location.href = '/esqueceuSenha';
     };
 
-    const handleCadastroUsuario = () => {
-        window.location.href = '/cadastroUsuario';
+    const handleCadastro = () => {
+        window.location.href = '/cadastroCliente';
     }
     
 
@@ -92,8 +92,8 @@ const Login = () => {
         <Container>
             <ContainerLeft></ContainerLeft>
             <ContainerRight> 
-                Welcome
-                <Subtitle>Please login here</Subtitle>
+                Cadastrar-se
+                <Subtitle>Cadastro do usuário</Subtitle>
                 <ContainerForm>
                     <TextField
                         required
@@ -129,7 +129,7 @@ const Login = () => {
                         {loading ? 'Entrando...' : 'Login'}
                     </StyledButton>
                 </ContainerForm>
-                <LinkComponent onClick={handleCadastroUsuario} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
+                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
                     Cadastre-se
                 </LinkComponent>
                 <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', fontSize: '.9rem' }}>

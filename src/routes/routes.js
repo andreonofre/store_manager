@@ -12,6 +12,7 @@ import Clientes from '../pages/Clientes/clientes'
 import Fornecedores from '../pages/Fornecedores/fornecedores'
 import DrawerLayout from '../navigation/DrawerLayout';
 import EsqueceuSenha from '../pages/EsqueceuSenha/esqueceuSenha';
+import CadastroUsuario from '../pages/CadastroUsuario/cadastroUsuario'
 
 
 // Componente para proteger rotas autenticadas
@@ -31,6 +32,7 @@ const AppRoutes = () => {
       {/* Rota pública - Login */}
       <Route path="/" element={<Login />} />
       <Route path="/esqueceuSenha" element={<EsqueceuSenha />} />
+      <Route path="cadastroUsuario" element={<CadastroUsuario/>}/>
       
       {/* Rotas protegidas com Drawer */}
       <Route
