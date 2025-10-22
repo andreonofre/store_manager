@@ -130,7 +130,7 @@ const Login = () => {
                     </StyledButton>
                 </ContainerForm>
                 <LinkComponent onClick={handleCadastroUsuario} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
-                    Cadastre-se
+                    Não tem uma conta? Cadastre-se
                 </LinkComponent>
                 <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', fontSize: '.9rem' }}>
                     Esqueceu a Senha?

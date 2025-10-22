@@ -1,11 +1,14 @@
 // ============================================
-// ARQUIVO: login.js (ATUALIZADO)
+// ARQUIVO: cadastroUsuario.js
 // ============================================
 
 import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'; 
+
 
 import { 
     Container,
@@ -14,17 +17,23 @@ import {
     Subtitle, 
     ContainerForm, 
     StyledButton, 
+    CadastroGoogle,
     LinkComponent 
 } from "./cadastroUsuarioStyles.js";
 
-const Login = () => {
+const CadastroUsuario = () => {
     const navigate = useNavigate();
+    const [nome, setNome] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [cep, setCep] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [repetirSenha, setRepetirSenha] = useState('');
     const [errors, setErrors] = useState({ email: false, senha: false });
     const [loading, setLoading] = useState(false);
 
-    const handleLogin = async () => {
+    const handleCadastroUsuario = async () => {
         // Validação básica
         const newErrors = {
             email: !email || !email.includes('@'),
@@ -73,28 +82,87 @@ const Login = () => {
         }, 1000);
     };
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            handleLogin();
-        }
-    };
 
-    const handleForgotPassword = () => {
-        window.location.href = '/esqueceuSenha';
-    };
+     const handleKeyPress = (event) => {
+         if (event.key === 'Enter') {
+             handleCadastroUsuario();
+         }
+     };
 
-    const handleCadastro = () => {
-        window.location.href = '/cadastroCliente';
-    }
-    
+     const handleCadastroGoogle = () => {
+        window.location.href = '/cadastroGoogle';
+     };
+
+     const handleLogin= () => {
+         window.location.href = '/login';
+     };
 
     return (
         <Container>
             <ContainerLeft></ContainerLeft>
             <ContainerRight> 
-                Cadastrar-se
+                Criar conta
                 <Subtitle>Cadastro do usuário</Subtitle>
+                <CadastroGoogle
+                    startIcon={
+                        <FontAwesomeIcon icon={faGoogle} style={{ color: '#414141ff' }} /> // Cor azul do Google para destaque
+                    }
+                    onClick={handleCadastroGoogle}
+                > Cadastrar-se com Google </CadastroGoogle>
+                <Subtitle>---------- OU ----------</Subtitle>
                 <ContainerForm>
+                    <TextField
+                        required
+                        id="nome"
+                        label="Nome/Razão Social"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={errors.nome}
+                        helperText={errors.nome ? "Digite um nome ou razão social!" : ""}
+                        fullWidth
+                        disabled={loading}
+                        
+                    />
+                    <TextField
+                        required
+                        id="endereco"
+                        label="Endereço"
+                        value={endereco}
+                        onChange={(e) => setEndereco(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={errors.endereco}
+                        helperText={errors.endereco ? "Digite um Endereço válido" : ""}
+                        fullWidth
+                        disabled={loading}
+                        
+                    />
+                    <TextField
+                        required
+                        id="cep"
+                        label="CEP"
+                        value={cep}
+                        onChange={(e) => setCep(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={errors.cep}
+                        helperText={errors.cep ? "Digite um CEP válido" : ""}
+                        fullWidth
+                        disabled={loading}
+                        
+                    />
+                    <TextField
+                        required
+                        id="telefone"
+                        label="Telefone"
+                        value={telefone}
+                        onChange={(e) => setTelefone(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={errors.telefone}
+                        helperText={errors.telefone ? "Digite um Telefone válido" : ""}
+                        fullWidth
+                        disabled={loading}
+                        
+                    />
                     <TextField
                         required
                         id="email"
@@ -103,7 +171,7 @@ const Login = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         onKeyPress={handleKeyPress}
                         error={errors.email}
-                        helperText={errors.email ? "Digite um e-mail válido" : ""}
+                        helperText={errors.email ? "Digite um e-mail válido!" : ""}
                         fullWidth
                         disabled={loading}
                     />
@@ -120,24 +188,33 @@ const Login = () => {
                         fullWidth
                         disabled={loading}
                     />
+                    <TextField
+                        required
+                        id="repetirSenha"
+                        label="Repetir senha"
+                        type="password"
+                        value={repetirSenha}
+                        onChange={(e) => setRepetirSenha(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                        error={errors.senha ? "As senhas devem ser iguais" : ""}
+                        fullWidth
+                        disabled={loading}
+                    />
 
                     <StyledButton 
                         variant="contained" 
-                        onClick={handleLogin}
+                        onClick={handleCadastroUsuario}
                         disabled={loading}
                     > 
-                        {loading ? 'Entrando...' : 'Login'}
+                        {loading ? 'Finalizando...' : 'Criar conta'}
                     </StyledButton>
                 </ContainerForm>
-                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
-                    Cadastre-se
-                </LinkComponent>
-                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', fontSize: '.9rem' }}>
-                    Esqueceu a Senha?
+                <LinkComponent onClick={handleLogin} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
+                    Já possui uma conta? Faça login
                 </LinkComponent>
             </ContainerRight>
         </Container>
     );
 };
 
-export default Login;
+export default CadastroUsuario;
