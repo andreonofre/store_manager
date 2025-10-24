@@ -3,9 +3,10 @@
 // ============================================
 
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { toast } from 'react-toastify';
+
 import { 
     Container,
     ContainerLeft, 
@@ -79,11 +80,13 @@ const Login = () => {
     };
 
     const handleForgotPassword = () => {
-        toast.info('Funcionalidade de recuperação de senha em desenvolvimento!', {
-            position: "top-center",
-            autoClose: 3000,
-        });
+        window.location.href = '/esqueceuSenha';
     };
+
+    const handleCadastroUsuario = () => {
+        window.location.href = '/cadastroUsuario';
+    }
+    
 
     return (
         <Container>
@@ -126,7 +129,10 @@ const Login = () => {
                         {loading ? 'Entrando...' : 'Login'}
                     </StyledButton>
                 </ContainerForm>
-                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer' }}>
+                <LinkComponent onClick={handleCadastroUsuario} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
+                    Não tem uma conta? Cadastre-se
+                </LinkComponent>
+                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', fontSize: '.9rem' }}>
                     Esqueceu a Senha?
                 </LinkComponent>
             </ContainerRight>
