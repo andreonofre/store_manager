@@ -7,7 +7,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
-import { faGoogle } from '@fortawesome/free-brands-svg-icons'; 
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 
 
 import { 
@@ -18,6 +19,7 @@ import {
     ContainerForm, 
     StyledButton, 
     CadastroGoogle,
+    CadastroHotmail,
     LinkComponent 
 } from "./cadastroUsuarioStyles.js";
 
@@ -93,6 +95,10 @@ const CadastroUsuario = () => {
         window.location.href = '/cadastroGoogle';
      };
 
+      const handleCadastroHotmail = () => {
+        window.location.href = '/cadastroGoogle';
+     };
+
      const handleLogin= () => {
          window.location.href = '/login';
      };
@@ -108,8 +114,38 @@ const CadastroUsuario = () => {
                         <FontAwesomeIcon icon={faGoogle} style={{ color: '#414141ff' }} /> // Cor azul do Google para destaque
                     }
                     onClick={handleCadastroGoogle}
+                      style={{
+                        backgroundColor: '#ffffff',
+                        color: '#4e4e4eff',
+                        padding: '10px 20px',
+                        border: '1px solid #adadadff',
+                        borderRadius: '10px',
+                        fontWeight: 600,
+                        textTransform: 'none',
+                        width: '55vh',
+                        marginTop: '15px',
+                        marginBottom: 'none'
+                    }}
                 > Cadastrar-se com Google </CadastroGoogle>
-                <Subtitle>---------- OU ----------</Subtitle>
+                <CadastroHotmail
+                    startIcon={
+                        <FontAwesomeIcon icon={faMicrosoft} style={{ color: '#414141ff' }} /> // Cor azul do Google para destaque
+                    }
+                    onClick={handleCadastroHotmail}
+                      style={{
+                        backgroundColor: '#ffffff',
+                        color: '#4e4e4eff',
+                        padding: '10px 20px',
+                        border: '1px solid #adadadff',
+                        borderRadius: '10px',
+                        fontWeight: 600,
+                        textTransform: 'none',
+                        width: '55vh',
+                        marginTop: '15px',
+                        marginBottom: '15px'
+                    }}
+                > Cadastrar-se com Hotmail </CadastroHotmail>
+                <Subtitle>──────────────  OU  ──────────────</Subtitle>
                 <ContainerForm>
                     <TextField
                         required
