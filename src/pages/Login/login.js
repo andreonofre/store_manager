@@ -14,7 +14,8 @@ import {
     Subtitle, 
     ContainerForm, 
     StyledButton, 
-    LinkComponent 
+    LinkComponent,
+    StyledTextField
 } from "./loginStyles.js";
 
 const Login = () => {
@@ -92,10 +93,10 @@ const Login = () => {
         <Container>
             <ContainerLeft></ContainerLeft>
             <ContainerRight> 
-                Welcome
-                <Subtitle>Please login here</Subtitle>
+                Seja bem-vindo
+                <Subtitle>Faça seu login</Subtitle>
                 <ContainerForm>
-                    <TextField
+                    <StyledTextField
                         required
                         id="email"
                         label="Endereço de e-mail"
@@ -107,7 +108,7 @@ const Login = () => {
                         fullWidth
                         disabled={loading}
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="senha"
                         label="Senha"
@@ -128,13 +129,14 @@ const Login = () => {
                     > 
                         {loading ? 'Entrando...' : 'Login'}
                     </StyledButton>
+                    <LinkComponent onClick={handleCadastroUsuario} >
+                        Não tem uma conta? Cadastre-se
+                    </LinkComponent>
+                    <LinkComponent onClick={handleForgotPassword} >
+                        Esqueceu a Senha?
+                    </LinkComponent>
                 </ContainerForm>
-                <LinkComponent onClick={handleCadastroUsuario} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
-                    Não tem uma conta? Cadastre-se
-                </LinkComponent>
-                <LinkComponent onClick={handleForgotPassword} style={{ cursor: 'pointer', fontSize: '.9rem' }}>
-                    Esqueceu a Senha?
-                </LinkComponent>
+
             </ContainerRight>
         </Container>
     );

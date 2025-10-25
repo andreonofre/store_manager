@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button  from "@mui/material/Button";
 import { Link } from "react-router-dom";
-
+import TextField from "@mui/material/TextField";
 
 export const Container = styled.div`
     display: grid;
@@ -18,11 +18,11 @@ export const ContainerLeft = styled.div`
 
 export const ContainerRight = styled.div`
     /* background-color: rgba(255, 252, 242, 1); */
-    margin-left: 3rem;
     margin-top: 25vh;
     font-weight: 600;
     font-size: 2rem;
 `
+
 
 export const Subtitle = styled.h1 `
     font-size: .9rem;
@@ -36,15 +36,39 @@ export const ContainerForm = styled.div `
     flex-direction: column;
     margin: 20px;
     gap: 20px;
+    margin-left: 0rem;
+    width: 70%;
+    max-width: 600px;
+`
+
+export const StyledTextField = styled(TextField)`
+    && {
+        .MuiOutlinedInput-root {
+            border-radius: 10px; /* Ajuste o valor conforme desejado */
+            
+            fieldset {
+                border-radius: 12px; /* Mesmo valor */
+            }
+            
+            &:hover fieldset {
+                border-color: #006EC4;
+            }
+            
+            &.Mui-focused fieldset {
+                border-color: #006EC4;
+            }
+        }
+    }
 `
 
 
 export const StyledButton = styled(Button)`
-    width: 100%;
+    width: 75%;
     && {
         background-color: #006EC4;
         text-transform: none;
-    
+        border-radius: 10px;
+        align-self: center;
         &:hover {
             background-color: #006fc4c0;
         }
@@ -55,8 +79,16 @@ export const StyledButton = styled(Button)`
 export const LinkComponent = styled(Link)`
     display: flex;
     justify-content: center;
-    font-size: .75rem;
-    margin-top: -10px;
-    color: #006EC4;
-    font-weight: 400;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: -1.5rem;
+    color: #4794ceff;
+    font-weight: 200;
+    align-self: center;
+    text-align: center;
+    cursor: pointer;
+    &&:hover {
+        font-weight: 400;
+        color: #4982fdbe;
+    }
 `

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button  from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 
 export const Container = styled.div`
@@ -19,7 +20,7 @@ export const ContainerLeft = styled.div`
 export const ContainerRight = styled.div`
     /* background-color: rgba(255, 252, 242, 1); */
     margin-left: 3rem;
-    margin-top: 25vh;
+    margin-top: 4vh;
     font-weight: 600;
     font-size: 2rem;
 `
@@ -40,36 +41,43 @@ export const ContainerForm = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 30px;
-  width: 55vh;
+  width: 70%;
   border-radius: 10px;
+  align-self: center;
 `;
 
+export const StyledTextField = styled(TextField)`
+    && {
+        .MuiOutlinedInput-root {
+            border-radius: 10px; /* Ajuste o valor conforme desejado */
+            
+            fieldset {
+                border-radius: 12px; /* Mesmo valor */
+            }
+            
+            &:hover fieldset {
+                border-color: #006EC4;
+            }
+            
+            &.Mui-focused fieldset {
+                border-color: #006EC4;
+            }
+        }
+    }
+`
+
 export const StyledButton = styled(Button)`
-  && {
-    background-color: rgb(0 110 196);
-    color: white;
-    padding: 12px 24px;
-    text-transform: none;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    
-    &:hover {
-      background-color: rgb(63 147 211);
-      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    width: 75%;
+    && {
+        background-color: #006EC4;
+        text-transform: none;
+        border-radius: 10px;
+        align-self: center;
+        &:hover {
+            background-color: #006fc4c0;
+        }
     }
-    
-    &:disabled {
-      background-color: #cccccc;
-      color: #666666;
-      box-shadow: none;
-    }
-  }
-`;
+`
 
 
 export const LinkComponent = styled(Link)`

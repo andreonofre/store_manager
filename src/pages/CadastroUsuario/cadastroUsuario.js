@@ -16,7 +16,8 @@ import {
     ContainerLeft, 
     ContainerRight, 
     Subtitle, 
-    ContainerForm, 
+    ContainerForm,
+    StyledTextField,
     StyledButton, 
     CadastroGoogle,
     CadastroHotmail,
@@ -122,7 +123,7 @@ const CadastroUsuario = () => {
                         borderRadius: '10px',
                         fontWeight: 600,
                         textTransform: 'none',
-                        width: '55vh',
+                        width: '55%',
                         marginTop: '15px',
                         marginBottom: 'none'
                     }}
@@ -140,14 +141,15 @@ const CadastroUsuario = () => {
                         borderRadius: '10px',
                         fontWeight: 600,
                         textTransform: 'none',
-                        width: '55vh',
+                        width: '55%',
                         marginTop: '15px',
-                        marginBottom: '15px'
+                        marginBottom: '15px',
+
                     }}
                 > Cadastrar-se com Hotmail </CadastroHotmail>
                 <Subtitle>──────────────  OU  ──────────────</Subtitle>
                 <ContainerForm>
-                    <TextField
+                    <StyledTextField
                         required
                         id="nome"
                         label="Nome/Razão Social"
@@ -160,7 +162,7 @@ const CadastroUsuario = () => {
                         disabled={loading}
                         
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="endereco"
                         label="Endereço"
@@ -173,7 +175,7 @@ const CadastroUsuario = () => {
                         disabled={loading}
                         
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="cep"
                         label="CEP"
@@ -186,7 +188,7 @@ const CadastroUsuario = () => {
                         disabled={loading}
                         
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="telefone"
                         label="Telefone"
@@ -199,7 +201,7 @@ const CadastroUsuario = () => {
                         disabled={loading}
                         
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="email"
                         label="Endereço de e-mail"
@@ -211,7 +213,7 @@ const CadastroUsuario = () => {
                         fullWidth
                         disabled={loading}
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="senha"
                         label="Senha"
@@ -224,7 +226,7 @@ const CadastroUsuario = () => {
                         fullWidth
                         disabled={loading}
                     />
-                    <TextField
+                    <StyledTextField
                         required
                         id="repetirSenha"
                         label="Repetir senha"
@@ -244,10 +246,10 @@ const CadastroUsuario = () => {
                     > 
                         {loading ? 'Finalizando...' : 'Criar conta'}
                     </StyledButton>
-                </ContainerForm>
-                <LinkComponent onClick={handleLogin} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
+                    <LinkComponent onClick={handleLogin} style={{ cursor: 'pointer', marginBottom: '.7rem', fontSize: '.9rem' }}>
                     Já possui uma conta? Faça login
-                </LinkComponent>
+                    </LinkComponent>
+                </ContainerForm>
             </ContainerRight>
         </Container>
     );

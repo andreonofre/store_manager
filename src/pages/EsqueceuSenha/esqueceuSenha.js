@@ -13,7 +13,8 @@ import {
   Subtitle,
   ContainerForm,
   StyledButton,
-  LinkComponent
+  LinkComponent,
+  StyledTextField
 } from "./esqueceuSenhaStyles.js";
 
 const EsqueceuSenha = () => {
@@ -88,7 +89,7 @@ const EsqueceuSenha = () => {
           <Subtitle>Digite seu e-mail para receber o código de verificação</Subtitle>
         </div>
         <ContainerForm>
-          <TextField
+          <StyledTextField
             label="E-mail"
             variant="outlined"
             type="email"
